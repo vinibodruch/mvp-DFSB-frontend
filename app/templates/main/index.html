@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}Home — MVP DFSB{% endblock %}
+{% block content %}
+<h1>Welcome to MVP DFSB</h1>
+<p>A minimal full-stack Python/Flask demonstration.</p>
+
+<h2>Latest Posts</h2>
+{% if pagination.items %}
+    <ul class="post-list">
+    {% for post in pagination.items %}
+        <li>
+            <a href="{{ url_for('posts.view_post', post_id=post.id) }}">{{ post.title }}</a>
+            <small>by {{ post.author.username }} on {{ post.created_at.strftime('%Y-%m-%d') }}</small>
+        </li>
+    {% endfor %}
+    </ul>
+    <a href="{{ url_for('posts.list_posts') }}">View all posts &rarr;</a>
+{% else %}
+    <p>No posts yet. <a href="{{ url_for('posts.create_post') }}">Be the first!</a></p>
+{% endif %}
+{% endblock %}

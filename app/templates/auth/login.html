@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}Login — MVP DFSB{% endblock %}
+{% block content %}
+<h1>Login</h1>
+<form method="POST" action="{{ url_for('auth.login') }}" novalidate>
+    {{ form.hidden_tag() }}
+    <div class="form-group">
+        {{ form.email.label }}
+        {{ form.email(class="form-control") }}
+        {% for error in form.email.errors %}
+            <span class="form-error">{{ error }}</span>
+        {% endfor %}
+    </div>
+    <div class="form-group">
+        {{ form.password.label }}
+        {{ form.password(class="form-control") }}
+        {% for error in form.password.errors %}
+            <span class="form-error">{{ error }}</span>
+        {% endfor %}
+    </div>
+    <button type="submit" class="btn btn-primary">Login</button>
+</form>
+<p>Don't have an account? <a href="{{ url_for('auth.register') }}">Register</a></p>
+{% endblock %}

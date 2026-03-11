@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %}Posts — MVP DFSB{% endblock %}
+{% block content %}
+<h1>All Posts</h1>
+{% if current_user.is_authenticated %}
+    <p><a href="{{ url_for('posts.create_post') }}" class="btn btn-primary">New Post</a></p>
+{% endif %}
+
+{% if pagination.items %}
+    <ul class="post-list">
+    {% for post in pagination.items %}
+        <li>
+            <a href="{{ url_for('posts.view_post', post_id=post.id) }}">{{ post.title }}</a>
+            <small>by {{ post.author.username }} on {{ post.created_at.strftime('%Y-%m-%d') }}</small>
+        </li>
+    {% endfor %}
+    </ul>
+
+    <div class="pagination">
+        {% if pagination.has_prev %}
+            <a href="{{ url_for('posts.list_posts', page=pagination.prev_num) }}">&laquo; Prev</a>
+        {% endif %}
+        <span>Page {{ pagination.page }} of {{ pagination.pages }}</span>
+        {% if pagination.has_next %}
+            <a href="{{ url_for('posts.list_posts', page=pagination.next_num) }}">Next &raquo;</a>
+        {% endif %}
+    </div>
+{% else %}
+    <p>No posts found.</p>
+{% endif %}
+{% endblock %}

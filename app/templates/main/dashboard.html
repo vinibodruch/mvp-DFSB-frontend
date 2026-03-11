@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}Dashboard — MVP DFSB{% endblock %}
+{% block content %}
+<h1>Welcome, {{ current_user.username }}!</h1>
+<p><a href="{{ url_for('posts.create_post') }}" class="btn btn-primary">New Post</a></p>
+
+<h2>Your Posts</h2>
+{% if pagination.items %}
+    <ul class="post-list">
+    {% for post in pagination.items %}
+        <li>
+            <a href="{{ url_for('posts.view_post', post_id=post.id) }}">{{ post.title }}</a>
+            <small>{{ post.created_at.strftime('%Y-%m-%d') }}</small>
+            &mdash;
+            <a href="{{ url_for('posts.edit_post', post_id=post.id) }}">Edit</a>
+            <form action="{{ url_for('posts.delete_post', post_id=post.id) }}" method="POST" style="display:inline;">
+                {{ csrf_token() }}
+                <button type="submit" class="btn btn-link btn-danger"
+                    onclick="return confirm('Delete this post?')">Delete</button>
+            </form>
+        </li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>You have no posts yet.</p>
+{% endif %}
+{% endblock %}

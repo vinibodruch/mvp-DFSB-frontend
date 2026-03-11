@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}{{ post.title }} — MVP DFSB{% endblock %}
+{% block content %}
+<article>
+    <h1>{{ post.title }}</h1>
+    <small>By {{ post.author.username }} &bull; {{ post.created_at.strftime('%Y-%m-%d %H:%M') }}</small>
+    <div class="post-content">{{ post.content }}</div>
+</article>
+
+{% if current_user.is_authenticated and current_user.id == post.user_id %}
+    <p>
+        <a href="{{ url_for('posts.edit_post', post_id=post.id) }}" class="btn btn-secondary">Edit</a>
+        <form action="{{ url_for('posts.delete_post', post_id=post.id) }}" method="POST" style="display:inline;">
+            {{ csrf_token() }}
+            <button type="submit" class="btn btn-danger"
+                onclick="return confirm('Are you sure you want to delete this post?')">Delete</button>
+        </form>
+    </p>
+{% endif %}
+
+<p><a href="{{ url_for('posts.list_posts') }}">&larr; Back to posts</a></p>
+{% endblock %}

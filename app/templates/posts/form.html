@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}{{ action }} Post — MVP DFSB{% endblock %}
+{% block content %}
+<h1>{{ action }} Post</h1>
+<form method="POST" novalidate>
+    {{ form.hidden_tag() }}
+    <div class="form-group">
+        {{ form.title.label }}
+        {{ form.title(class="form-control") }}
+        {% for error in form.title.errors %}
+            <span class="form-error">{{ error }}</span>
+        {% endfor %}
+    </div>
+    <div class="form-group">
+        {{ form.content.label }}
+        {{ form.content(class="form-control", rows=10) }}
+        {% for error in form.content.errors %}
+            <span class="form-error">{{ error }}</span>
+        {% endfor %}
+    </div>
+    <button type="submit" class="btn btn-primary">{{ action }}</button>
+    <a href="{{ url_for('posts.list_posts') }}" class="btn btn-secondary">Cancel</a>
+</form>
+{% endblock %}
