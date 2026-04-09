@@ -11,7 +11,10 @@
   <!-- Cabeçalho -->
   <header>
     <h1>Do It</h1>
-    <span id="statusIndicator" class="status-badge status-checking">Verificando API...</span>
+    <div class="header-right">
+      <a id="apiDocsLink" href="http://127.0.0.1:8080/openapi" target="_blank" rel="noopener" class="btn-link">API Docs</a>
+      <span id="statusIndicator" class="status-badge status-checking">Verificando API...</span>
+    </div>
   </header>
 
   <!-- Conteúdo principal -->
@@ -63,6 +66,27 @@
         <button id="confirmDelete" class="btn btn-danger">Excluir</button>
         <button id="cancelDelete" class="btn btn-secondary">Cancelar</button>
       </div>
+    </div>
+  </div>
+
+  <!-- Modal de edição de tarefa -->
+  <div id="editModal" class="modal-overlay" hidden>
+    <div class="modal">
+      <h3>Editar Tarefa</h3>
+      <form id="editForm">
+        <div class="field">
+          <label for="editTitle">Título <span class="required">*</span></label>
+          <input type="text" id="editTitle" maxlength="200" required />
+        </div>
+        <div class="field">
+          <label for="editDescription">Descrição (opcional)</label>
+          <input type="text" id="editDescription" maxlength="1000" />
+        </div>
+        <div class="modal-actions">
+          <button type="submit" class="btn btn-primary">Salvar</button>
+          <button type="button" id="cancelEdit" class="btn btn-secondary">Cancelar</button>
+        </div>
+      </form>
     </div>
   </div>
 

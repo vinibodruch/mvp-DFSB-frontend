@@ -35,7 +35,7 @@ mvp-DFSB-frontend/
 ## Requisitos
 
 - Navegador moderno (Chrome, Firefox, Edge, Safari — versões a partir de 2022)
-- O **backend** rodando em `http://127.0.0.1:5000`
+- O **backend** rodando em `http://127.0.0.1:8080`
 - Nenhuma ferramenta de build, servidor local ou extensão necessária
 
 ---
@@ -50,8 +50,10 @@ pip install -r requirements.txt
 python app.py
 ```
 
-A API estará disponível em `http://127.0.0.1:5000`.  
-Documentação Swagger: `http://127.0.0.1:5000/openapi`
+A API estará disponível em `http://127.0.0.1:8080`.  
+Documentação Swagger: `http://127.0.0.1:8080/openapi`
+
+OBS.: Executando na porta **8080** pois a porta **5000** local pode estar em uso.
 
 ---
 

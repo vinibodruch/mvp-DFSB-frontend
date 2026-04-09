@@ -56,6 +56,28 @@ header h1 {
   letter-spacing: 0.03em;
 }
 
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.btn-link {
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  letter-spacing: 0.02em;
+  background-color: #1a2b3c;
+  color: var(--accent, #4a9eff);
+  text-decoration: none;
+  transition: background-color 0.2s;
+}
+
+.btn-link:hover {
+  background-color: #223344;
+}
+
 /* ================================
    Indicador de status da API
    ================================ */
