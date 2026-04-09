@@ -1,30 +1,70 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Do It — App de tarefas</title>
-  <!-- Custom styles -->
+  <title>Do It — Lista de Tarefas</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <section>
-    <table id="taskTable">
-      <thead>
-        <tr>
-          <th>Id</th>
-          <th>Tarefa</th>
-          <th>Descrição</th>
-          <th>Concluída</th>
-          <th>Criado em</th>
-          <th>Finalizado em</th>
-        </tr>
-      </thead>
-      <tbody id="tableBody">
-        <!-- Linhas da tabela serão inseridas aqui via JavaScript -->
-      </tbody>
-    </table>
-  </section>
+
+  <!-- Cabeçalho -->
+  <header>
+    <h1>Do It</h1>
+    <span id="statusIndicator" class="status-badge status-checking">Verificando API...</span>
+  </header>
+
+  <!-- Conteúdo principal -->
+  <main>
+
+    <!-- Formulário de criação de tarefa -->
+    <section class="card form-card">
+      <h2>Nova Tarefa</h2>
+      <form id="createForm">
+        <div class="field">
+          <label for="inputTitle">Título <span class="required">*</span></label>
+          <input
+            type="text"
+            id="inputTitle"
+            placeholder="Ex: Comprar leite"
+            maxlength="200"
+            required
+          />
+        </div>
+        <div class="field">
+          <label for="inputDescription">Descrição (opcional)</label>
+          <input
+            type="text"
+            id="inputDescription"
+            placeholder="Ex: Leite integral, 2 litros"
+            maxlength="1000"
+          />
+        </div>
+        <button type="submit" class="btn btn-primary">Adicionar</button>
+      </form>
+    </section>
+
+    <!-- Lista de tarefas -->
+    <section class="card list-card">
+      <h2>Minhas Tarefas</h2>
+      <ul id="taskList" class="task-list">
+        <!-- Tarefas inseridas via JavaScript -->
+      </ul>
+      <p id="emptyMessage" class="empty-message" hidden>Nenhuma tarefa cadastrada ainda.</p>
+    </section>
+
+  </main>
+
+  <!-- Modal de confirmação de exclusão -->
+  <div id="deleteModal" class="modal-overlay" hidden>
+    <div class="modal">
+      <p>Tem certeza que deseja excluir esta tarefa?</p>
+      <div class="modal-actions">
+        <button id="confirmDelete" class="btn btn-danger">Excluir</button>
+        <button id="cancelDelete" class="btn btn-secondary">Cancelar</button>
+      </div>
+    </div>
+  </div>
 
   <script src="scripts.js"></script>
 </body>

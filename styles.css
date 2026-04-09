@@ -1,0 +1,339 @@
+/* ================================
+   Variáveis globais
+   ================================ */
+:root {
+  --bg: #121212;
+  --surface: #1e1e1e;
+  --surface-hover: #2a2a2a;
+  --border: #2e2e2e;
+  --text: #e0e0e0;
+  --text-muted: #888;
+  --primary: #4a90d9;
+  --primary-hover: #357abd;
+  --danger: #d94a4a;
+  --danger-hover: #b83b3b;
+  --success: #4caf50;
+  --secondary: #3a3a3a;
+  --secondary-hover: #4a4a4a;
+  --radius: 8px;
+  --shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+/* ================================
+   Reset básico
+   ================================ */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  font-size: 1rem;
+  line-height: 1.5;
+  min-height: 100vh;
+}
+
+/* ================================
+   Cabeçalho
+   ================================ */
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+  background-color: var(--surface);
+  border-bottom: 1px solid var(--border);
+  box-shadow: var(--shadow);
+}
+
+header h1 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+}
+
+/* ================================
+   Indicador de status da API
+   ================================ */
+.status-badge {
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  letter-spacing: 0.02em;
+}
+
+.status-checking {
+  background-color: #333;
+  color: var(--text-muted);
+}
+
+.status-online {
+  background-color: #1b3a1f;
+  color: var(--success);
+}
+
+.status-offline {
+  background-color: #3a1b1b;
+  color: var(--danger);
+}
+
+/* ================================
+   Layout principal
+   ================================ */
+main {
+  max-width: 700px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* ================================
+   Cards
+   ================================ */
+.card {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  box-shadow: var(--shadow);
+}
+
+.card h2 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 1rem;
+}
+
+/* ================================
+   Formulário de criação
+   ================================ */
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin-bottom: 0.9rem;
+}
+
+.field label {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+}
+
+.field .required {
+  color: var(--danger);
+}
+
+.field input {
+  background-color: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--text);
+  padding: 0.55rem 0.75rem;
+  font-size: 0.95rem;
+  transition: border-color 0.15s;
+  width: 100%;
+}
+
+.field input:focus {
+  outline: none;
+  border-color: var(--primary);
+}
+
+/* ================================
+   Botões
+   ================================ */
+.btn {
+  display: inline-block;
+  padding: 0.5rem 1.2rem;
+  border: none;
+  border-radius: var(--radius);
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.15s, opacity 0.15s;
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-primary {
+  background-color: var(--primary);
+  color: #fff;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background-color: var(--primary-hover);
+}
+
+.btn-danger {
+  background-color: var(--danger);
+  color: #fff;
+}
+
+.btn-danger:hover:not(:disabled) {
+  background-color: var(--danger-hover);
+}
+
+.btn-secondary {
+  background-color: var(--secondary);
+  color: var(--text);
+}
+
+.btn-secondary:hover:not(:disabled) {
+  background-color: var(--secondary-hover);
+}
+
+/* ================================
+   Lista de tarefas
+   ================================ */
+.task-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+/* Item da tarefa */
+.task-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  background-color: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0.75rem 1rem;
+  transition: background-color 0.15s;
+}
+
+.task-item:hover {
+  background-color: var(--surface-hover);
+}
+
+/* Conteúdo textual da tarefa */
+.task-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  flex: 1;
+  min-width: 0; /* evita overflow em texto longo */
+}
+
+.task-title {
+  font-size: 0.95rem;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.task-description {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Tarefa concluída */
+.task-item.completed .task-title {
+  text-decoration: line-through;
+  color: var(--success);
+}
+
+.task-item.completed .task-description {
+  text-decoration: line-through;
+  color: var(--success);
+  opacity: 0.7;
+}
+
+/* Ações da tarefa (checkbox + botão excluir) */
+.task-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+
+.task-actions input[type="checkbox"] {
+  width: 1.1rem;
+  height: 1.1rem;
+  accent-color: var(--success);
+  cursor: pointer;
+}
+
+.btn-icon {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text-muted);
+  font-size: 1rem;
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+  transition: color 0.15s, background-color 0.15s;
+  line-height: 1;
+}
+
+.btn-icon:hover {
+  color: var(--danger);
+  background-color: rgba(217, 74, 74, 0.12);
+}
+
+/* Mensagem de lista vazia */
+.empty-message {
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  padding: 1rem 0;
+}
+
+/* ================================
+   Modal de confirmação
+   ================================ */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.65);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+
+.modal-overlay[hidden] {
+  display: none;
+}
+
+.modal {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.75rem 2rem;
+  max-width: 360px;
+  width: 90%;
+  box-shadow: var(--shadow);
+  text-align: center;
+}
+
+.modal p {
+  margin-bottom: 1.25rem;
+  font-size: 1rem;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+}
