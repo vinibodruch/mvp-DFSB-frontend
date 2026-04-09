@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Do It — Lista de Tarefas</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- Cabeçalho -->
+  <header>
+    <h1>Do It</h1>
+    <div class="header-right">
+      <a id="apiDocsLink" href="http://127.0.0.1:8080/openapi" target="_blank" rel="noopener" class="btn-link">API Docs</a>
+      <span id="statusIndicator" class="status-badge status-checking">Verificando API...</span>
+    </div>
+  </header>
+
+  <!-- Conteúdo principal -->
+  <main>
+
+    <!-- Formulário de criação de tarefa -->
+    <section class="card form-card">
+      <h2>Nova Tarefa</h2>
+      <form id="createForm">
+        <div class="field">
+          <label for="inputTitle">Título <span class="required">*</span></label>
+          <input
+            type="text"
+            id="inputTitle"
+            placeholder="Ex: Comprar leite"
+            maxlength="200"
+            required
+          />
+        </div>
+        <div class="field">
+          <label for="inputDescription">Descrição (opcional)</label>
+          <input
+            type="text"
+            id="inputDescription"
+            placeholder="Ex: Leite integral, 2 litros"
+            maxlength="1000"
+          />
+        </div>
+        <button type="submit" class="btn btn-primary">Adicionar</button>
+      </form>
+    </section>
+
+    <!-- Lista de tarefas -->
+    <section class="card list-card">
+      <h2>Minhas Tarefas</h2>
+      <ul id="taskList" class="task-list">
+        <!-- Tarefas inseridas via JavaScript -->
+      </ul>
+      <p id="emptyMessage" class="empty-message" hidden>Nenhuma tarefa cadastrada ainda.</p>
+    </section>
+
+  </main>
+
+  <!-- Modal de confirmação de exclusão -->
+  <div id="deleteModal" class="modal-overlay" hidden>
+    <div class="modal">
+      <p>Tem certeza que deseja excluir esta tarefa?</p>
+      <div class="modal-actions">
+        <button id="confirmDelete" class="btn btn-danger">Excluir</button>
+        <button id="cancelDelete" class="btn btn-secondary">Cancelar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal de edição de tarefa -->
+  <div id="editModal" class="modal-overlay" hidden>
+    <div class="modal">
+      <h3>Editar Tarefa</h3>
+      <form id="editForm">
+        <div class="field">
+          <label for="editTitle">Título <span class="required">*</span></label>
+          <input type="text" id="editTitle" maxlength="200" required />
+        </div>
+        <div class="field">
+          <label for="editDescription">Descrição (opcional)</label>
+          <input type="text" id="editDescription" maxlength="1000" />
+        </div>
+        <div class="modal-actions">
+          <button type="submit" class="btn btn-primary">Salvar</button>
+          <button type="button" id="cancelEdit" class="btn btn-secondary">Cancelar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="scripts.js"></script>
+</body>
+</html>
