@@ -313,6 +313,39 @@ main {
   background-color: rgba(217, 74, 74, 0.12);
 }
 
+.btn-info {
+  position: relative;
+  color: var(--text-muted);
+}
+
+.btn-info:hover {
+  color: var(--primary);
+  background-color: rgba(74, 144, 217, 0.12);
+}
+
+.info-tooltip {
+  display: none;
+  position: absolute;
+  bottom: calc(100% + 6px);
+  right: 0;
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 0.5rem 0.75rem;
+  white-space: nowrap;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  flex-direction: column;
+  gap: 0.25rem;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.btn-info:hover .info-tooltip {
+  display: flex;
+}
+
 /* Mensagem de lista vazia */
 .empty-message {
   text-align: center;

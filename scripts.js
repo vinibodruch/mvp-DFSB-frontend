@@ -99,7 +99,19 @@ const createTaskItem = (task) => {
   editBtn.textContent = "✎";
   editBtn.addEventListener("click", () => openEditModal(task));
 
+  const infoBtn = document.createElement("button");
+  infoBtn.className = "btn-icon btn-info";
+  infoBtn.textContent = "ℹ";
+  infoBtn.setAttribute("aria-label", "Informações da tarefa");
+
+  const tooltip = document.createElement("div");
+  tooltip.className = "info-tooltip";
+  const fmt = (iso) => new Date(iso).toLocaleString("pt-BR", { dateStyle: "short", timeStyle: "short" });
+  tooltip.innerHTML = `<span>Criado: ${fmt(task.created_at)}</span><span>Atualizado: ${fmt(task.updated_at)}</span>`;
+  infoBtn.appendChild(tooltip);
+
   actions.appendChild(checkbox);
+  actions.appendChild(infoBtn);
   actions.appendChild(editBtn);
   actions.appendChild(deleteBtn);
 
