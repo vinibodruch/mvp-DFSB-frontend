@@ -99,7 +99,19 @@ const createTaskItem = (task) => {
   editBtn.textContent = "✎";
   editBtn.addEventListener("click", () => openEditModal(task));
 
+  const infoBtn = document.createElement("button");
+  infoBtn.className = "btn-icon btn-info";
+  infoBtn.textContent = "ℹ";
+  infoBtn.setAttribute("aria-label", "Informações da tarefa");
+
+  const tooltip = document.createElement("div");
+  tooltip.className = "info-tooltip";
+  const fmt = (iso) => new Date(iso).toLocaleString("pt-BR", { dateStyle: "short", timeStyle: "short" });
+  tooltip.innerHTML = `<span>Criado: ${fmt(task.created_at)}</span><span>Atualizado: ${fmt(task.updated_at)}</span>`;
+  infoBtn.appendChild(tooltip);
+
   actions.appendChild(checkbox);
+  actions.appendChild(infoBtn);
   actions.appendChild(editBtn);
   actions.appendChild(deleteBtn);
 
@@ -166,10 +178,25 @@ const toggleComplete = async (taskId, completed) => {
 
 let pendingEditId = null;
 
-const openEditModal = (task) => {
+const openEditModal = async (task) => {
   pendingEditId = task.id;
-  document.getElementById("editTitle").value = task.title;
-  document.getElementById("editDescription").value = task.description || "";
+
+  // Busca os dados mais recentes da tarefa antes de abrir o modal
+  try {
+    const response = await fetch(`${BASE_URL}/tasks/${task.id}`);
+    if (response.ok) {
+      const fresh = await response.json();
+      document.getElementById("editTitle").value = fresh.title;
+      document.getElementById("editDescription").value = fresh.description || "";
+    } else {
+      document.getElementById("editTitle").value = task.title;
+      document.getElementById("editDescription").value = task.description || "";
+    }
+  } catch {
+    document.getElementById("editTitle").value = task.title;
+    document.getElementById("editDescription").value = task.description || "";
+  }
+
   document.getElementById("editModal").hidden = false;
 };
 
