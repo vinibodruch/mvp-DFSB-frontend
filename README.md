@@ -15,8 +15,10 @@ O **Do It** permite criar, visualizar, concluir e excluir tarefas por meio de um
 - Verificação automática de saúde da API ao carregar a página
 - Listagem de todas as tarefas cadastradas
 - Criação de tarefa com título e descrição opcional
+- Edição de tarefa via modal (busca dados atualizados antes de abrir)
 - Marcar tarefa como concluída (exibe em verde com tachado)
 - Excluir tarefa com modal de confirmação
+- Tooltip com data de criação e última atualização ao passar o mouse no ícone ℹ
 - Layout responsivo com tema escuro
 
 ---
@@ -78,13 +80,14 @@ Ou arraste o arquivo para qualquer janela do navegador — **sem necessidade de 
 
 ## Rotas da API utilizadas
 
-| Método   | Rota          | Finalidade                          |
-| -------- | ------------- | ----------------------------------- |
-| `GET`    | `/health`     | Verificar se a API está no ar       |
-| `GET`    | `/tasks/`     | Carregar todas as tarefas           |
-| `POST`   | `/tasks/`     | Criar uma nova tarefa               |
-| `PATCH`  | `/tasks/:id`  | Atualizar o status de conclusão     |
-| `DELETE` | `/tasks/:id`  | Excluir uma tarefa                  |
+| Método   | Rota         | Finalidade                                          |
+| -------- | ------------ | --------------------------------------------------- |
+| `GET`    | `/health`    | Verificar se a API está no ar                       |
+| `GET`    | `/tasks/`    | Carregar todas as tarefas                           |
+| `POST`   | `/tasks/`    | Criar uma nova tarefa                               |
+| `GET`    | `/tasks/:id` | Buscar dados atualizados ao abrir o modal de edição |
+| `PATCH`  | `/tasks/:id` | Atualizar título/descrição ou status de conclusão   |
+| `DELETE` | `/tasks/:id` | Excluir uma tarefa                                  |
 
 ---
 

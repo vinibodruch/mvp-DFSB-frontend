@@ -178,10 +178,25 @@ const toggleComplete = async (taskId, completed) => {
 
 let pendingEditId = null;
 
-const openEditModal = (task) => {
+const openEditModal = async (task) => {
   pendingEditId = task.id;
-  document.getElementById("editTitle").value = task.title;
-  document.getElementById("editDescription").value = task.description || "";
+
+  // Busca os dados mais recentes da tarefa antes de abrir o modal
+  try {
+    const response = await fetch(`${BASE_URL}/tasks/${task.id}`);
+    if (response.ok) {
+      const fresh = await response.json();
+      document.getElementById("editTitle").value = fresh.title;
+      document.getElementById("editDescription").value = fresh.description || "";
+    } else {
+      document.getElementById("editTitle").value = task.title;
+      document.getElementById("editDescription").value = task.description || "";
+    }
+  } catch {
+    document.getElementById("editTitle").value = task.title;
+    document.getElementById("editDescription").value = task.description || "";
+  }
+
   document.getElementById("editModal").hidden = false;
 };
 
